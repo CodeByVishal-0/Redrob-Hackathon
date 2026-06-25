@@ -3,3 +3,5 @@ __pycache__/
 .venv/
 .vscode/
 .idea/
+candidate_embeddings.npy
+candidates.jsonl
