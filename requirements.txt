@@ -1,0 +1,8 @@
+numpy
+pandas
+xgboost
+sentence-transformers
+torch
+transformers
+scikit-learn
+tqdm
