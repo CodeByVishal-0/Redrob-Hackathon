@@ -1,0 +1,12 @@
+Senior AI Engineer
+
+Requirements:
+- Python
+- Machine Learning
+- Embeddings
+- Retrieval
+- Ranking
+- LLMs
+- Vector Databases
+- Recommendation Systems
+- Product Engineering
