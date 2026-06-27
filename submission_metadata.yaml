@@ -15,7 +15,7 @@ primary_contact:
   phone: "+91-8542017789"        # Used for top-50 / top-10 outreach
 
 team_members:
-  - name: "Member 1 Vishal Prajapati"
+  - name: "Vishal Prajapati"
     email: "vishalprajapatimbad@gmail.com"
     role: "ML Engineer"          
 
@@ -31,7 +31,10 @@ sandbox_link: "https://colab.research.google.com/drive/1USEiJbCpkiBHfpf5ohaU3RG-
 # candidate sample. See Section 10.5 of submission_spec.md for acceptable
 # platforms (HuggingFace Spaces, Streamlit Cloud, Replit, Colab, Docker, Binder).
 
-reproduce_command: "python submit_ranker.py"
+reproduce_command: |
+  python embedder.py &&
+  python train_behavior_model.py &&
+  python submit_ranker.py
 # The single command that produces submission.csv from candidates.jsonl.
 # Should run end-to-end within 5 minutes on CPU with 16GB RAM and no network.
 
@@ -39,7 +42,7 @@ reproduce_command: "python submit_ranker.py"
 # Compute environment
 # ============================================================================
 compute:
-  platform: "Windows 11 Local Machine"                    # Or: "AWS EC2 c5.4xlarge", "Local Linux box", etc.
+  platform: "Local Windows 11 Workstation"                    # Or: "AWS EC2 c5.4xlarge", "Local Linux box", etc.
   cpu_cores: 8                                  # Number of CPU cores used
   ram_gb: 16                                    # Available RAM in GB
   python_version: "3.14"                      # python --version
@@ -63,15 +66,15 @@ ai_usage_summary: |
   ChatGPT was used as a development assistant for debugging Python code, 
   improving the semantic document construction, refining the XGBoost training pipeline, 
   improving reasoning generation, and preparing project documentation. 
-  No candidate data was submitted to external APIs during the ranking stage, 
-  and no LLM inference is performed during submission generation.
+  AI tools were used only during development and debugging. 
+  The final ranking pipeline performs entirely local inference without calling external APIs or LLM services.
 
 # ============================================================================
 # Approach summary (optional but recommended)
 # ============================================================================
 methodology_summary: |
   Developed a hybrid candidate ranking pipeline combining semantic retrieval with behavioral reranking. 
-  Candidate profiles are first filtered using heuristic honeypot detection to remove logically inconsistent profiles. 
+  Candidate profiles are first filtered using rule-based honeypot detection to remove logically inconsistent profiles. 
   Rich semantic documents are constructed from profile information, career history, skills, summaries, 
   and derived AI tags before being embedded using the SentenceTransformer all-MiniLM-L6-v2 model. 
   During ranking, cosine similarity retrieves the top semantic matches for the job description. 
